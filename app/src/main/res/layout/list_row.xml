@@ -6,7 +6,14 @@
     android:layout_height="wrap_content"
     android:padding="8dp">
 
-    <com.android.volley.toolbox.NetworkImageView
+    <!--<com.android.volley.toolbox.NetworkImageView-->
+        <!--android:id="@+id/thumbnail"-->
+        <!--android:layout_width="80dp"-->
+        <!--android:layout_height="80dp"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_marginRight="8dp"/>-->
+
+    <ImageView
         android:id="@+id/thumbnail"
         android:layout_width="80dp"
         android:layout_height="80dp"

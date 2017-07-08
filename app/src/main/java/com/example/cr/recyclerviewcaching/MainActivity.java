@@ -2,6 +2,7 @@ package com.example.cr.recyclerviewcaching;
 
 import android.app.ProgressDialog;
 import android.app.Service;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.cr.recyclerviewcaching.adapter.CustomAdapter;
 import com.example.cr.recyclerviewcaching.app.AppController;
 import com.example.cr.recyclerviewcaching.model.Movie;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity
     private List<Movie> movieList = new ArrayList<Movie>();
     private ListView listView;
     private CustomAdapter customAdapter;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -42,7 +45,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         listView = (ListView) findViewById(R.id.list);
-        customAdapter = new CustomAdapter(this, movieList);
+        customAdapter = new CustomAdapter(this, movieList, getApplicationContext());
         listView.setAdapter(customAdapter);
 
         progressDialog = new ProgressDialog(this);
@@ -65,6 +68,7 @@ public class MainActivity extends AppCompatActivity
                         JSONObject obj = response.getJSONObject(i);
                         Movie movie = new Movie();
                         movie.setTitle(obj.getString("title"));
+
                         movie.setThumbnailUrl(obj.getString("image"));
                         movie.setRating(((Number) obj.get("rating")).doubleValue());
                         movie.setYear(obj.getInt("releaseYear"));
